@@ -79,7 +79,7 @@ public class App {
   }
 
   private static Jogada processarJogada() {
-    String[] input = UIGame.readInput().split(" ");
+    String[] input = UIGame.readInput().trim().split(" ");
 
     int x;
     int y;

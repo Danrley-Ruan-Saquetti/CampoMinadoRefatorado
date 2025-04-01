@@ -60,7 +60,7 @@ public class Game {
   }
 
   private void abrirCasa(int x, int y) {
-    if (!matrizJogador.isMarcado(x, y)) {
+    if (matrizJogador.isMarcado(x, y)) {
       return;
     }
 
@@ -83,7 +83,7 @@ public class Game {
 
     exibirCasa(x, y);
 
-    if (matrizCampoMinado.getCasa(x, y) <= 0) {
+    if (matrizCampoMinado.getCasa(x, y) > 0) {
       return;
     }
 
