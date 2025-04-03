@@ -1,4 +1,4 @@
-package Old;
+package NaoRefatorado;
 
 public class Algoritmo {
 
