@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UIGame {
 
-  private final static Scanner s = new Scanner(System.in);
+  private final static Scanner SCAN = new Scanner(System.in);
 
   private final Game game;
 
@@ -38,7 +38,7 @@ public class UIGame {
 
   public static String readInput(String inputName) {
     write("$ " + inputName);
-    return s.nextLine();
+    return SCAN.nextLine();
   }
 
   public void writeTabuleiro() {
@@ -59,23 +59,29 @@ public class UIGame {
       header += String.format("%-" + COL_WIDTH + "d ", i);
     }
 
-    write("\n" + header);
+    writeln("\n" + header);
 
     for (int i = 0; i < linhas; i++) {
-      write("\n   " + "-".repeat(colunas * 4 + 1));
+      writeln("   " + "-".repeat(colunas * 4 + 1));
 
       String linha = lpad(String.valueOf(i + 1), 2) + " |";
 
       for (int j = 0; j < colunas; j++) {
-        String casa = game.isAberto(i, j) || exibirCasaEscondida ? formatCasa(campoMinado[i][j]) : game.isMarcado(i, j) ? " ! " : COL_SPACING;
+        String casa = COL_SPACING;
+
+        if (game.isAberto(i, j) || exibirCasaEscondida) {
+          casa = formatCasa(campoMinado[i][j]);
+        } else if (game.isMarcado(i, j)) {
+          casa = " ! ";
+        }
 
         linha += casa + "|";
       }
 
-      write("\n" + linha);
+      writeln(linha);
     }
 
-    writeln("\n   " + "-".repeat(colunas * 4 + 1));
+    write("   " + "-".repeat(colunas * 4 + 1));
   }
 
   private static String formatCasa(int value) {
